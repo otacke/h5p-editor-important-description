@@ -14,9 +14,6 @@ export default class ImportantDescription {
     this.params = params;
     this.setValue = setValue;
 
-    // Callbacks to call when parameters change
-    this.changes = [];
-
     // Let parent handle ready callbacks of children
     this.passReadies = true;
 
@@ -28,6 +25,9 @@ export default class ImportantDescription {
     // Instantiate original field (or create your own and call setValue)
     this.fieldInstance = new H5PEditor.widgets[this.field.type](this.parent, this.field, this.params, this.setValue);
     this.fieldInstance.appendTo(this.$container);
+
+    // Callbacks to call when parameters change
+    this.changes = this.fieldInstance.changes;
 
     // Build storage key
     const librarySelector = H5PEditor.findLibraryAncestor(this.parent);
