@@ -27,7 +27,7 @@ export default class ImportantDescription {
     this.fieldInstance.appendTo(this.$container);
 
     // Callbacks to call when parameters change
-    this.changes = this.fieldInstance.changes;
+    this.changes = this.fieldInstance.changes || [];
 
     // Build storage key
     const librarySelector = H5PEditor.findLibraryAncestor(this.parent);
