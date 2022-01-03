@@ -1,9 +1,9 @@
 {
   "libraryStrings": {
-    "example": "Example",
-    "hide": "Hide",
-    "hideImportantInstructions": "Hide important instructions",
-    "importantInstructions": "Important instructions",
-    "showImportantInstructions": "Show instructions"
+    "example": "Piemērs",
+    "hide": "Paslēpt",
+    "hideImportantInstructions": "Paslēpt svarīgas instrukcijas",
+    "importantInstructions": "Svarīgas instrukcijas",
+    "showImportantInstructions": "Rādīt instrukcijas"
   }
 }
