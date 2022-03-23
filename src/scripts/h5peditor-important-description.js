@@ -42,9 +42,16 @@ export default class ImportantDescription {
       this.storageKey = `${identifier}-important-description-open`;
     }
 
+    const l10n = this.field?.importantDescription?.l10n || {};
+    const translatables = ['importantInstructions', 'hideImportantInstructions',
+      'example', 'showImportantInstructions', 'hide'];
+
     this.dictionary = this.createDictionary(
-      ['importantInstructions', 'hideImportantInstructions', 'example',
-        'showImportantInstructions', 'hide']
+      translatables.map(translatable => {
+        const word = {};
+        word[translatable] = l10n[translatable] || undefined;
+        return word;
+      })
     );
 
     // Find reference node for adding important descriptions
@@ -214,17 +221,24 @@ export default class ImportantDescription {
    * Create dictionary.
    * Should use the terms used in H5P core, but have a safety measure for
    * changes to the keys.
-   * @param {string[]} words Keys of words to be translated.
+   * @param {object[]} words Key/value pairs of words to be translated.
    * @return {object} Lookup table for translations.
    */
   createDictionary(words = []) {
     const dictionary = {};
 
     words.forEach(word => {
-      if (H5PEditor.t('core', word).indexOf(`Missing translation for ${word}`) !== 0) {
+      if (Object.keys(word).length && Object.entries(word)[0]) {
+        const key = Object.keys(word)[0];
+        // Custom translation
+        dictionary[key] = word[key];
+      }
+      else if (H5PEditor.t('core', word).indexOf(`Missing translation for ${word}`) !== 0) {
+        // H5P core translation
         dictionary[word] = H5PEditor.t('core', word);
       }
       else {
+        // Fallback translation
         dictionary[word] = H5PEditor.t('H5PEditor.ImportantDescription', word);
       }
     });
