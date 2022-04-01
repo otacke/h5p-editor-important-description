@@ -30,9 +30,16 @@ export default class ImportantDescription {
     this.fieldInstance.appendTo(this.$container);
 
     // Relay changes
-    this.fieldInstance.changes.push(() => {
-      this.handleFieldChange();
-    });
+    if (typeof this.fieldInstance.change === 'function') {
+      this.fieldInstance.change(() => {
+        this.handleFieldChange();
+      });
+    }
+    else if (Array.isArray(this.fieldInstance.changes)) {
+      this.fieldInstance.changes.push(() => {
+        this.handleFieldChange();
+      });
+    }
 
     // Build storage key
     const librarySelector = H5PEditor.findLibraryAncestor(this.parent);
