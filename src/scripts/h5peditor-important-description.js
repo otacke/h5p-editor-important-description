@@ -235,18 +235,19 @@ export default class ImportantDescription {
     const dictionary = {};
 
     words.forEach(word => {
-      if (Object.keys(word).length && Object.entries(word)[0]) {
-        const key = Object.keys(word)[0];
+      const key = (Object.keys(word).length) ? Object.keys(word)[0] : undefined;
+
+      if (key && Object.values(word)[0] !== undefined) {
         // Custom translation
         dictionary[key] = word[key];
       }
-      else if (H5PEditor.t('core', word).indexOf(`Missing translation for ${word}`) !== 0) {
+      else if (key && H5PEditor.t('core', Object.keys(word)[0]).indexOf(`Missing translation`) !== 0) {
         // H5P core translation
-        dictionary[word] = H5PEditor.t('core', word);
+        dictionary[key] = H5PEditor.t('core', key);
       }
       else {
         // Fallback translation
-        dictionary[word] = H5PEditor.t('H5PEditor.ImportantDescription', word);
+        dictionary[key] = H5PEditor.t('H5PEditor.ImportantDescription', key);
       }
     });
 
