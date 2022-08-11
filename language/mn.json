@@ -2,8 +2,8 @@
   "libraryStrings": {
     "example": "Жишээ",
     "hide": "Нуух",
-    "hideImportantInstructions": "Hide important instructions",
-    "importantInstructions": "Important instructions",
-    "showImportantInstructions": "Show instructions"
+    "hideImportantInstructions": "Чухал зааврыг нуу",
+    "importantInstructions": "Чухал заавар",
+    "showImportantInstructions": "Зааврыг харуулах"
   }
 }
