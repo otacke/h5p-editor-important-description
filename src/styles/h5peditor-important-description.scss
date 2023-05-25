@@ -1,14 +1,4 @@
 .h5peditor-important-description {
-  &.instructions-visible {
-    .show-instructions-button-wrapper {
-      display: none;
-    }
-  }
-  &:not(.instructions-visible) {
-    .instructions {
-      display: none;
-    }
-  }
 
   .instructions {
     background-color: #f9f9d8;
@@ -28,7 +18,7 @@
 
         &::before {
           content: "\e909";
-          font-family: "H5P";
+          font-family: "H5P", sans-serif;
           font-size: 1.5em;
           font-weight: normal;
           margin-left: -0.3em;
@@ -51,7 +41,7 @@
 
         &::before {
           content: "\e894";
-          font-family: "H5P";
+          font-family: "H5P", sans-serif;
           font-size: 1.6em;
           position: relative;
           top: 0.1em;
@@ -60,9 +50,6 @@
     }
 
     .body {
-      .description {
-      }
-
       .example {
         background-color: #d9fac3;
         border: 1px solid #bbde98;
@@ -108,7 +95,7 @@
 
       &::before {
         content: "\e909";
-        font-family: "H5P";
+        font-family: "H5P", sans-serif;
         font-size: 1.8em;
         font-style: normal;
         font-weight: normal;
@@ -118,6 +105,18 @@
         top: 0em;
         vertical-align: top;
       }
+    }
+  }
+
+  &.instructions-visible {
+    .show-instructions-button-wrapper {
+      display: none;
+    }
+  }
+
+  &:not(.instructions-visible) {
+    .instructions {
+      display: none;
     }
   }
 }
