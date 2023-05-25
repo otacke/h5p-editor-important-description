@@ -36,7 +36,7 @@ If no label is available, will put it before the first field.
       "example": "Some example including a list: <ul><li>A</li><li>B</li></ul>",
       "floatingButton": false,
       "l10n": {
-        "example": "Here's an example:"
+        "example": "Here's an example:",
         "hide": "Hide",
         "hideImportantInstructions": "Hide me",
         "importantInstructions": "I am some title",
