@@ -2,7 +2,7 @@
 export default class ImportantDescription {
 
   /**
-   * @constructor
+   * @class
    * @param {object} parent Parent element in semantics.
    * @param {object} field Semantics field properties.
    * @param {object} params Parameters entered in editor form.
@@ -54,7 +54,7 @@ export default class ImportantDescription {
       'example', 'showImportantInstructions', 'hide'];
 
     this.dictionary = this.createDictionary(
-      translatables.map(translatable => {
+      translatables.map((translatable) => {
         const word = {};
         word[translatable] = l10n[translatable] || undefined;
         return word;
@@ -77,7 +77,7 @@ export default class ImportantDescription {
       }
 
       // Set initial state
-      H5PEditor.storage.get(this.storageKey, value => {
+      H5PEditor.storage.get(this.storageKey, (value) => {
         if (value === undefined || value === true) {
           this.$container.get(0).classList.add('instructions-visible');
         }
@@ -91,7 +91,7 @@ export default class ImportantDescription {
   /**
    * Find reference node to insert description before.
    * @param {HTMLElement} container Container to look in.
-   * @return {HTMLElement|null} Reference node.
+   * @returns {HTMLElement|null} Reference node.
    */
   findReference(container) {
     let reference =
@@ -110,7 +110,7 @@ export default class ImportantDescription {
   /**
    * Build instructions DOM.
    * @param {object} importantDescription Params from semantics.
-   * @return {HTMLElement} Instructions DOM.
+   * @returns {HTMLElement|undefined} Instructions DOM.
    */
   buildInstructions(importantDescription = {}) {
     if (!importantDescription.description && !importantDescription.example) {
@@ -177,7 +177,7 @@ export default class ImportantDescription {
   /**
    * Build DOM for "Show instructions button".
    * @param {object} importantDescription Params from semantics.
-   * @return {HTMLElement} DOM for "Show instructions button".
+   * @returns {HTMLElement} DOM for "Show instructions button".
    */
   buildShowInstructionsButton(importantDescription = {}) {
     const showInstuctionsButtonWrapper = document.createElement('div');
@@ -219,7 +219,7 @@ export default class ImportantDescription {
    */
   handleFieldChange() {
     this.params = this.fieldInstance.params;
-    this.changes.forEach(change => {
+    this.changes.forEach((change) => {
       change(this.params);
     });
   }
@@ -229,19 +229,19 @@ export default class ImportantDescription {
    * Should use the terms used in H5P core, but have a safety measure for
    * changes to the keys.
    * @param {object[]} words Key/value pairs of words to be translated.
-   * @return {object} Lookup table for translations.
+   * @returns {object} Lookup table for translations.
    */
   createDictionary(words = []) {
     const dictionary = {};
 
-    words.forEach(word => {
+    words.forEach((word) => {
       const key = (Object.keys(word).length) ? Object.keys(word)[0] : undefined;
 
       if (key && Object.values(word)[0] !== undefined) {
         // Custom translation
         dictionary[key] = word[key];
       }
-      else if (key && H5PEditor.t('core', Object.keys(word)[0]).indexOf(`Missing translation`) !== 0) {
+      else if (key && H5PEditor.t('core', Object.keys(word)[0]).indexOf('Missing translation') !== 0) {
         // H5P core translation
         dictionary[key] = H5PEditor.t('core', key);
       }
@@ -264,7 +264,7 @@ export default class ImportantDescription {
 
   /**
    * Validate current values. Invoked by H5P core.
-   * @return {boolean} True, if current value is valid, else false.
+   * @returns {boolean} True, if current value is valid, else false.
    */
   validate() {
     return this.fieldInstance.validate();

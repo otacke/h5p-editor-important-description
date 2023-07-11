@@ -1,14 +1,22 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const nodeEnv = process.env.NODE_ENV || 'development';
-const isProd = (nodeEnv === 'production');
+const mode = process.argv.includes('--mode=production') ?
+  'production' : 'development';
+const libraryName = process.env.npm_package_name;
 
 module.exports = {
-  mode: nodeEnv,
+  mode: mode,
+  resolve: {
+    alias: {
+      '@scripts': path.resolve(__dirname, 'src/scripts'),
+      '@services': path.resolve(__dirname, 'src/scripts/services'),
+      '@styles': path.resolve(__dirname, 'src/styles')
+    }
+  },
   optimization: {
-    minimize: isProd,
+    minimize: mode === 'production',
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -21,16 +29,18 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'h5peditor-important-description.css'
+      filename: `${libraryName}.css`
     })
   ],
   entry: {
     dist: './src/entries/dist.js'
   },
   output: {
-    filename: 'h5peditor-important-description.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: `${libraryName}.js`,
+    path: path.resolve(__dirname, 'dist'),
+    clean: true
   },
+  target: ['browserslist'],
   module: {
     rules: [
       {
@@ -47,10 +57,8 @@ module.exports = {
               publicPath: ''
             }
           },
-          { loader: "css-loader" },
-          {
-            loader: "sass-loader"
-          }
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
         ]
       },
       {
@@ -68,5 +76,5 @@ module.exports = {
   stats: {
     colors: true
   },
-  devtool: (isProd) ? undefined : 'eval-cheap-module-source-map'
+  ...(mode !== 'production' && { devtool: 'eval-cheap-module-source-map' })
 };
