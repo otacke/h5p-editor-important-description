@@ -1,15 +1,16 @@
 build
 node_modules
 reports
-test
+tests
 dev
 src
-.eslintrc.json
 .idea
 .git
 .babelrc
 .gitmodules
+.eslintrc.json
 .h5pignore
+.stylelintrc.json
 .travis.yml
 karma.conf.js
 webpack.config.js
@@ -17,6 +18,6 @@ webpack.dev.config.js
 README.md
 CONTRIBUTING.md
 package.json
-worknotes
 package-lock.json
+worknotes
 LICENSE

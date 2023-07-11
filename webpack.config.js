@@ -20,12 +20,12 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          compress:{
+          compress: {
             drop_console: true,
           }
         }
-      }),
-    ],
+      })
+    ]
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -62,12 +62,12 @@ module.exports = {
         ]
       },
       {
-        test: /\.(svg|png|jpg|gif)$/,
+        test: /\.svg|\.jpg|\.png$/,
         include: path.join(__dirname, 'src/images'),
         type: 'asset/resource'
       },
       {
-        test: /\.(woff|woff2|eot|ttf)$/,
+        test: /\.woff$/,
         include: path.join(__dirname, 'src/fonts'),
         type: 'asset/resource'
       }

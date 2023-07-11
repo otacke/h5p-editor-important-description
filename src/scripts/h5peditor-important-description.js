@@ -26,7 +26,9 @@ export default class ImportantDescription {
     this.changes = [];
 
     // Instantiate original field (or create your own and call setValue)
-    this.fieldInstance = new H5PEditor.widgets[this.field.type](this.parent, this.field, this.params, this.setValue);
+    this.fieldInstance = new H5PEditor.widgets[this.field.type](
+      this.parent, this.field, this.params, this.setValue
+    );
     this.fieldInstance.appendTo(this.$container);
 
     // Relay changes
@@ -66,14 +68,20 @@ export default class ImportantDescription {
 
     if (reference) {
       // Add fields
-      this.instructions = this.buildInstructions(this.field.importantDescription);
+      this.instructions = this.buildInstructions(
+        this.field.importantDescription
+      );
       if (this.instructions) {
         reference.parentNode.insertBefore(this.instructions, reference);
       }
 
-      this.showInstructionsButton = this.buildShowInstructionsButton(this.field.importantDescription);
+      this.showInstructionsButton = this.buildShowInstructionsButton(
+        this.field.importantDescription
+      );
       if (this.showInstructionsButton) {
-        reference.parentNode.insertBefore(this.showInstructionsButton, reference);
+        reference.parentNode.insertBefore(
+          this.showInstructionsButton, reference
+        );
       }
 
       // Set initial state
@@ -134,7 +142,9 @@ export default class ImportantDescription {
     // Close button
     const closeButton = document.createElement('button');
     closeButton.classList.add('close-button');
-    closeButton.setAttribute('aria-label', this.dictionary['hideImportantInstructions']);
+    closeButton.setAttribute(
+      'aria-label', this.dictionary['hideImportantInstructions']
+    );
     closeButton.innerText = this.dictionary['hide'];
     closeButton.addEventListener('click', () => {
       this.handleCloseInstructions();
@@ -181,11 +191,14 @@ export default class ImportantDescription {
    */
   buildShowInstructionsButton(importantDescription = {}) {
     const showInstuctionsButtonWrapper = document.createElement('div');
-    showInstuctionsButtonWrapper.classList.add('show-instructions-button-wrapper');
+    showInstuctionsButtonWrapper.classList.add(
+      'show-instructions-button-wrapper'
+    );
 
     const showInstructionsButton = document.createElement('button');
     showInstructionsButton.classList.add('show-instructions-button');
-    showInstructionsButton.innerText = this.dictionary['showImportantInstructions'];
+    showInstructionsButton.innerText =
+      this.dictionary['showImportantInstructions'];
     showInstructionsButton.addEventListener('click', () => {
       this.handleOpenInstructions();
     });
@@ -241,7 +254,9 @@ export default class ImportantDescription {
         // Custom translation
         dictionary[key] = word[key];
       }
-      else if (key && H5PEditor.t('core', Object.keys(word)[0]).indexOf('Missing translation') !== 0) {
+      else if (key && H5PEditor.t(
+        'core', Object.keys(word)[0]).indexOf('Missing translation') !== 0
+      ) {
         // H5P core translation
         dictionary[key] = H5PEditor.t('core', key);
       }
