@@ -1,0 +1,9 @@
+{
+  "libraryStrings": {
+    "example": "Primer",
+    "hide": "Skrij",
+    "hideImportantInstructions": "Skrij navodila",
+    "importantInstructions": "Pomembna navodila",
+    "showImportantInstructions": "Prikaži navodila"
+  }
+}
