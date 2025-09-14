@@ -19,7 +19,7 @@ export default class ImportantDescription {
 
     // DOM
     this.$container = H5P.jQuery('<div>', {
-      class: 'h5peditor-important-description'
+      class: 'h5peditor-important-description',
     });
 
     // Changes
@@ -27,7 +27,7 @@ export default class ImportantDescription {
 
     // Instantiate original field (or create your own and call setValue)
     this.fieldInstance = new H5PEditor.widgets[this.field.type](
-      this.parent, this.field, this.params, this.setValue
+      this.parent, this.field, this.params, this.setValue,
     );
     this.fieldInstance.appendTo(this.$container);
 
@@ -60,7 +60,7 @@ export default class ImportantDescription {
         const word = {};
         word[translatable] = l10n[translatable] || undefined;
         return word;
-      })
+      }),
     );
 
     // Find reference node for adding important descriptions
@@ -69,18 +69,18 @@ export default class ImportantDescription {
     if (reference) {
       // Add fields
       this.instructions = this.buildInstructions(
-        this.field.importantDescription
+        this.field.importantDescription,
       );
       if (this.instructions) {
         reference.parentNode.insertBefore(this.instructions, reference);
       }
 
       this.showInstructionsButton = this.buildShowInstructionsButton(
-        this.field.importantDescription
+        this.field.importantDescription,
       );
       if (this.showInstructionsButton) {
         reference.parentNode.insertBefore(
-          this.showInstructionsButton, reference
+          this.showInstructionsButton, reference,
         );
       }
 
@@ -136,16 +136,16 @@ export default class ImportantDescription {
     // Title
     const title = document.createElement('div');
     title.classList.add('title');
-    title.innerText = this.dictionary['importantInstructions'];
+    title.innerText = this.dictionary.importantInstructions;
     header.appendChild(title);
 
     // Close button
     const closeButton = document.createElement('button');
     closeButton.classList.add('close-button');
     closeButton.setAttribute(
-      'aria-label', this.dictionary['hideImportantInstructions']
+      'aria-label', this.dictionary.hideImportantInstructions,
     );
-    closeButton.innerText = this.dictionary['hide'];
+    closeButton.innerText = this.dictionary.hide;
     closeButton.addEventListener('click', () => {
       this.handleCloseInstructions();
     });
@@ -171,7 +171,7 @@ export default class ImportantDescription {
 
       const title = document.createElement('div');
       title.classList.add('example-title');
-      title.innerText = this.dictionary['example'];
+      title.innerText = this.dictionary.example;
       example.appendChild(title);
 
       const text = document.createElement('div');
@@ -192,13 +192,13 @@ export default class ImportantDescription {
   buildShowInstructionsButton(importantDescription = {}) {
     const showInstuctionsButtonWrapper = document.createElement('div');
     showInstuctionsButtonWrapper.classList.add(
-      'show-instructions-button-wrapper'
+      'show-instructions-button-wrapper',
     );
 
     const showInstructionsButton = document.createElement('button');
     showInstructionsButton.classList.add('show-instructions-button');
     showInstructionsButton.innerText =
-      this.dictionary['showImportantInstructions'];
+      this.dictionary.showImportantInstructions;
     showInstructionsButton.addEventListener('click', () => {
       this.handleOpenInstructions();
     });
