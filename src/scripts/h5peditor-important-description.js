@@ -94,6 +94,15 @@ export default class ImportantDescription {
 
     // Errors
     this.$errors = this.$container.find('.h5p-errors');
+
+    // Ensure this.value always points to this.fieldInstance.value, expected by H5PEditor.showWhen.
+    Object.defineProperty(this, 'value', {
+      get: () => this.fieldInstance.value,
+      set: (value) => {
+        this.fieldInstance.value = value;
+      },
+      configurable: true,
+    });
   }
 
   /**
