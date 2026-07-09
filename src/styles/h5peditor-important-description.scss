@@ -1,4 +1,8 @@
 .h5peditor-important-description {
+  container-type: inline-size;
+  container-name: important-description;
+  position: relative;
+
   .instructions {
     background-color: #f9f9d8;
     border: 1px solid #ffde78;
@@ -117,5 +121,14 @@
     .instructions {
       display: none;
     }
+  }
+}
+
+/* Ensure button is next to select field if sufficient space */
+@container important-description (width > 480px) {
+  .show-instructions-button-wrapper:has(~.h5peditor-select) {
+    position: absolute;
+    right: 0;
+    width: fit-content;
   }
 }
