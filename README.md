@@ -18,7 +18,7 @@ the original value used in H5P core:
   - `"hide"` (string): Label for "Hide" button
   - `"hideImportantInstructions"` (string): ARIA label for "Hide" button
   - `"importantInstructions"` (string): Title for field when open
-  - `"showImportantInstructions"` Label for "Show" button
+  - `"showImportantInstructions"` (string) Label for "Show" button
 
 Will try to place the instructions/the button for showing the instructions
 after the description. If no description is available, will try under the label.
